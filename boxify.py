@@ -3,8 +3,7 @@
 """
 SYNOPSIS
 
-    python SCRIPT.py [-h,--help] [-v,--verbose]
-
+    python3 boxify.py
 
 DESCRIPTION
 
