@@ -53,7 +53,8 @@ class Defaults(object):
 
 
 class TextBox(object):
-    border_char = ' '
+    # Note: all spaces in this class are Em Spaces (U+2003)
+    border_char = ' '
 
     def __init__(self, paragraph=None,
                        max_line_length=Defaults.default_max_line_length,
@@ -109,7 +110,7 @@ class TextBox(object):
                 lines.append(line)
                 line = word
             else:
-                line = '{line} {word}'.format(line=line, word=word)
+                line = '{line} {word}'.format(line=line, word=word)
         lines.append(line)
         return lines
 
@@ -164,10 +165,10 @@ class TextBox(object):
 
     def _horizontal_padded_line(self):
         """Goes above or below our textual content, but is inside the box"""
-        return ' '*self._internal_padded_line_length
+        return self.line_pad*self._internal_padded_line_length
 
     def _padding(self):
-        return ' '*self.padding_width
+        return self.line_pad*self.padding_width
     #
     ##########################################################################
 
@@ -208,7 +209,7 @@ class TextBox(object):
 
 class HeavyTextBox(TextBox):
     box = '┏━┓'\
-          '┃ ┃'\
+          '┃ ┃'\
           '┗━┛'
 
     def __init__(self, *args, **kwargs):
@@ -217,7 +218,7 @@ class HeavyTextBox(TextBox):
 
 class LightTextBox(TextBox):
     box = '┌─┐'\
-          '│ │'\
+          '│ │'\
           '└─┘'
  
     def __init__(self, *args, **kwargs):
@@ -227,7 +228,7 @@ class LightTextBox(TextBox):
 # They share corners or sides.
 class HeavyDoubleDashTextBox(TextBox):
     box = '┏╍┓'\
-          '╏ ╏'\
+          '╏ ╏'\
           '┗╍┛'
 
     def __init__(self, *args, **kwargs):
@@ -236,7 +237,7 @@ class HeavyDoubleDashTextBox(TextBox):
 
 class LightDoubleDashTextBox(TextBox):
     box = '┌╌┐'\
-          '╎ ╎'\
+          '╎ ╎'\
           '└╌┘'
 
     def __init__(self, *args, **kwargs):
@@ -245,7 +246,7 @@ class LightDoubleDashTextBox(TextBox):
 
 class HeavyTripleDashTextBox(TextBox):
     box = '┏┅┓'\
-          '┇ ┇'\
+          '┇ ┇'\
           '┗┅┛'
     def __init__(self, *args, **kwargs):
         super(HeavyTripleDashTextBox, self).__init__(*args, **kwargs)
@@ -253,7 +254,7 @@ class HeavyTripleDashTextBox(TextBox):
 
 class LightTripleDashTextBox(TextBox):
     box = '┌┄┐'\
-          '┆ ┆'\
+          '┆ ┆'\
           '└┄┘'
 
     def __init__(self, *args, **kwargs):
@@ -262,7 +263,7 @@ class LightTripleDashTextBox(TextBox):
 
 class HeavyQuadDashTextBox(TextBox):
     box = '┏┉┓'\
-          '┋ ┋'\
+          '┋ ┋'\
           '┗┉┛'
 
     def __init__(self, *args, **kwargs):
@@ -271,7 +272,7 @@ class HeavyQuadDashTextBox(TextBox):
 
 class LightQuadDashTextBox(TextBox):
     box = '┌┈┐'\
-          '┊ ┊'\
+          '┊ ┊'\
           '└┈┘'
 
     def __init__(self, *args, **kwargs):
@@ -280,7 +281,7 @@ class LightQuadDashTextBox(TextBox):
 
 class DoubleBarTextBox(TextBox):
     box = '╔═╗'\
-          '║ ║'\
+          '║ ║'\
           '╚═╝'
 
     def __init__(self, *args, **kwargs):
@@ -289,7 +290,7 @@ class DoubleBarTextBox(TextBox):
 
 class ArcCornerTextBox(TextBox):
     box = '╭─╮'\
-          '│ │'\
+          '│ │'\
           '╰─╯'
 
     def __init__(self, *args, **kwargs):
@@ -298,12 +299,18 @@ class ArcCornerTextBox(TextBox):
 
 
 DefaultTextBox = HeavyTextBox
-def it(paragraph=None):
+def it(paragraph=None, line_length=Defaults.default_max_line_length):
     if paragraph is None:
         paragraph = ''
-    return DefaultTextBox(paragraph=paragraph)
+    return DefaultTextBox(paragraph=paragraph, max_line_length=line_length)
 
 
 if __name__ == '__main__':
+    import sys
+    if 1 < len(sys.argv):
+        n = int(sys.argv[-1])
+    else:
+        n = Defaults.default_max_line_length
+
     paragraph = "In west Philadelphia, born and raised! On the playground was where I spent most of my days. Chillin' out, maxin', relaxin' all cool, and all shootin' some b-ball outside of the school when a couple of guys who were up to no good started making trouble in my neighborhood. I got in one little fight and my mom got scared. She said 'You're movin' with your auntie and uncle in Bel Air'."
-    print(ArcCornerTextBox(paragraph=paragraph))
+    print(it(paragraph=paragraph, line_length=n))
