@@ -53,7 +53,7 @@ class Defaults(object):
 
 class TextBox(object):
     # Note: all spaces in this class are Em Spaces (U+2003)
-    border_char = ' '
+    border_char = ' '
 
     def __init__(self, paragraph=None,
                        max_line_length=Defaults.default_max_line_length,
@@ -109,7 +109,7 @@ class TextBox(object):
                 lines.append(line)
                 line = word
             else:
-                line = '{line} {word}'.format(line=line, word=word)
+                line = '{line} {word}'.format(line=line, word=word)
         lines.append(line)
         return lines
 
@@ -208,7 +208,7 @@ class TextBox(object):
 
 class HeavyTextBox(TextBox):
     box = '┏━┓'\
-          '┃ ┃'\
+          '┃ ┃'\
           '┗━┛'
 
     def __init__(self, *args, **kwargs):
@@ -217,7 +217,7 @@ class HeavyTextBox(TextBox):
 
 class LightTextBox(TextBox):
     box = '┌─┐'\
-          '│ │'\
+          '│ │'\
           '└─┘'
  
     def __init__(self, *args, **kwargs):
@@ -227,7 +227,7 @@ class LightTextBox(TextBox):
 # They share corners or sides.
 class HeavyDoubleDashTextBox(TextBox):
     box = '┏╍┓'\
-          '╏ ╏'\
+          '╏ ╏'\
           '┗╍┛'
 
     def __init__(self, *args, **kwargs):
@@ -236,7 +236,7 @@ class HeavyDoubleDashTextBox(TextBox):
 
 class LightDoubleDashTextBox(TextBox):
     box = '┌╌┐'\
-          '╎ ╎'\
+          '╎ ╎'\
           '└╌┘'
 
     def __init__(self, *args, **kwargs):
@@ -245,7 +245,7 @@ class LightDoubleDashTextBox(TextBox):
 
 class HeavyTripleDashTextBox(TextBox):
     box = '┏┅┓'\
-          '┇ ┇'\
+          '┇ ┇'\
           '┗┅┛'
     def __init__(self, *args, **kwargs):
         super(HeavyTripleDashTextBox, self).__init__(*args, **kwargs)
@@ -253,7 +253,7 @@ class HeavyTripleDashTextBox(TextBox):
 
 class LightTripleDashTextBox(TextBox):
     box = '┌┄┐'\
-          '┆ ┆'\
+          '┆ ┆'\
           '└┄┘'
 
     def __init__(self, *args, **kwargs):
@@ -262,7 +262,7 @@ class LightTripleDashTextBox(TextBox):
 
 class HeavyQuadDashTextBox(TextBox):
     box = '┏┉┓'\
-          '┋ ┋'\
+          '┋ ┋'\
           '┗┉┛'
 
     def __init__(self, *args, **kwargs):
@@ -271,7 +271,7 @@ class HeavyQuadDashTextBox(TextBox):
 
 class LightQuadDashTextBox(TextBox):
     box = '┌┈┐'\
-          '┊ ┊'\
+          '┊ ┊'\
           '└┈┘'
 
     def __init__(self, *args, **kwargs):
@@ -280,7 +280,7 @@ class LightQuadDashTextBox(TextBox):
 
 class DoubleBarTextBox(TextBox):
     box = '╔═╗'\
-          '║ ║'\
+          '║ ║'\
           '╚═╝'
 
     def __init__(self, *args, **kwargs):
@@ -289,7 +289,7 @@ class DoubleBarTextBox(TextBox):
 
 class ArcCornerTextBox(TextBox):
     box = '╭─╮'\
-          '│ │'\
+          '│ │'\
           '╰─╯'
 
     def __init__(self, *args, **kwargs):
