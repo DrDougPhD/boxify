@@ -209,7 +209,7 @@ class TextBox(object):
 class HeavyTextBox(TextBox):
     box = '┏━┓'\
           '┃ ┃'\
-          '┗━┛'\
+          '┗━┛'
 
     def __init__(self, *args, **kwargs):
         super(HeavyTextBox, self).__init__(*args, **kwargs)
@@ -223,6 +223,79 @@ class LightTextBox(TextBox):
     def __init__(self, *args, **kwargs):
         super(LightTextBox, self).__init__(*args, **kwargs)
 
+# TODO: A lot of the ones below can be subclasses of the two ones above.
+# They share corners or sides.
+class HeavyDoubleDashTextBox(TextBox):
+    box = '┏╍┓'\
+          '╏ ╏'\
+          '┗╍┛'
+
+    def __init__(self, *args, **kwargs):
+        super(HeavyDoubleDashTextBox, self).__init__(*args, **kwargs)
+
+
+class LightDoubleDashTextBox(TextBox):
+    box = '┌╌┐'\
+          '╎ ╎'\
+          '└╌┘'
+
+    def __init__(self, *args, **kwargs):
+        super(LightDoubleDashTextBox, self).__init__(*args, **kwargs)
+
+
+class HeavyTripleDashTextBox(TextBox):
+    box = '┏┅┓'\
+          '┇ ┇'\
+          '┗┅┛'
+    def __init__(self, *args, **kwargs):
+        super(HeavyTripleDashTextBox, self).__init__(*args, **kwargs)
+
+
+class LightTripleDashTextBox(TextBox):
+    box = '┌┄┐'\
+          '┆ ┆'\
+          '└┄┘'
+
+    def __init__(self, *args, **kwargs):
+        super(LightTripleDashTextBox, self).__init__(*args, **kwargs)
+
+
+class HeavyQuadDashTextBox(TextBox):
+    box = '┏┉┓'\
+          '┋ ┋'\
+          '┗┉┛'
+
+    def __init__(self, *args, **kwargs):
+        super(HeavyQuadDashTextBox, self).__init__(*args, **kwargs)
+
+
+class LightQuadDashTextBox(TextBox):
+    box = '┌┈┐'\
+          '┊ ┊'\
+          '└┈┘'
+
+    def __init__(self, *args, **kwargs):
+        super(LightQuadDashTextBox, self).__init__(*args, **kwargs)
+
+
+class DoubleBarTextBox(TextBox):
+    box = '╔═╗'\
+          '║ ║'\
+          '╚═╝'
+
+    def __init__(self, *args, **kwargs):
+        super(DoubleBarTextBox, self).__init__(*args, **kwargs)
+
+
+class ArcCornerTextBox(TextBox):
+    box = '╭─╮'\
+          '│ │'\
+          '╰─╯'
+
+    def __init__(self, *args, **kwargs):
+        super(ArcCornerTextBox, self).__init__(*args, **kwargs)
+
+
 
 DefaultTextBox = HeavyTextBox
 def it(paragraph=None):
@@ -233,4 +306,4 @@ def it(paragraph=None):
 
 if __name__ == '__main__':
     paragraph = "In west Philadelphia, born and raised! On the playground was where I spent most of my days. Chillin' out, maxin', relaxin' all cool, and all shootin' some b-ball outside of the school when a couple of guys who were up to no good started making trouble in my neighborhood. I got in one little fight and my mom got scared. She said 'You're movin' with your auntie and uncle in Bel Air'."
-    print(it(paragraph=paragraph))
+    print(ArcCornerTextBox(paragraph=paragraph))
